@@ -8,6 +8,8 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
+# feature test send requests to cs and
+# require real cs username and password
 Rake::TestTask.new(:features) do |test|
   test.libs << 'lib' << 'test' << 'features'
   test.pattern = 'features/**/*.rb'
@@ -15,3 +17,5 @@ Rake::TestTask.new(:features) do |test|
 end
 
 task test_all: [:test, :features]
+
+task default: :test
