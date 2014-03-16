@@ -6,7 +6,7 @@ You need an account to use it.
 
 ## Signing in to CouchSurfing
 
-To use it you need to sign in first. To do that you need to initialize CouchSurfing instance with your
+To use it you need to sign in first. To do that initialize CouchSurfing instance with your
 username and password and call sign_in method on it.
 ```ruby
 cs = CouchSurfingClient.CouchSurfing.new USERNAME, PASSWORD
