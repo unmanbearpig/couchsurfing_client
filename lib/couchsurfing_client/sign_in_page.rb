@@ -13,9 +13,9 @@ module CouchSurfingClient
 
       unless form
         if signed_in?
-          fail CouchSurfingSignInError, 'Trying to sign in when already signed in'
+          fail SignInError, 'Trying to sign in when already signed in'
         else
-          fail CouchSurfingSignInError, 'Could not find sign in form on the main page'
+          fail SignInError, 'Could not find sign in form on the main page'
         end
       end
 
@@ -25,11 +25,11 @@ module CouchSurfingClient
       begin
         result = form.submit
       rescue Mechanize::ResponseCodeError => e
-        raise CouchSurfingSignInError, 'Sign in failed', e
+        raise SignInError, 'Sign in failed', e
       end
 
       unless result.code == '200'
-        fail CouchSurfingSignInError, "Could not log in, response error #{result.code}"
+        fail SignInError, "Could not log in, response error #{result.code}"
       end
     end
 
