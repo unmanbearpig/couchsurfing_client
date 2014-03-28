@@ -98,6 +98,10 @@ module CouchSurfingClient
       where 'search_mode' => 'T'
     end
 
+    def search_mode mode
+      where 'search_mode' => mode
+    end
+
     def male
       clone.add_gender 'male'
     end
