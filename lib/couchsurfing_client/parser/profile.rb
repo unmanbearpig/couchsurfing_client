@@ -112,7 +112,7 @@ module CouchSurfingClient
   end
 
   class ProfileParser < HtmlParser
-    KEYS = %i(name mission couch_available is_verified requests_replied_to last_in_time
+    KEYS = %w(name mission couch_available is_verified requests_replied_to last_in_time
               last_in_location member_since profile_views age birthday gender member_name
               occupation hometown profile_pic languages groups preferred_gender smoking
               has_children has_pets can_host_pets can_host_children max_surfers_per_night shared_sleeping_surface
@@ -120,11 +120,11 @@ module CouchSurfingClient
               cs_experience interests music_movies_books people_i_enjoy wisdom amazing_thing
               opinion_on_cs locations_travelled total_references positive_references
               neutral_references negative_references references_from_hosts references_from_surfers
-              travelling_references references profile_url profile_id)
+              travelling_references references profile_url profile_id).map(&:to_sym)
 
-    NOT_IMPLEMENTED_KEYS = %i(friends references references_from_hosts references_from_surfers
+    NOT_IMPLEMENTED_KEYS = %w(friends references references_from_hosts references_from_surfers
                               travelling_references locations_travelled groups
-                              positive_references neutral_references negative_references)
+                              positive_references neutral_references negative_references).map(&:to_sym)
 
 
     def keys
@@ -353,7 +353,7 @@ module CouchSurfingClient
     def to_h
       hash = super
 
-      %i(gender preferred_gender)
+      %w(gender preferred_gender).map(&:to_sym)
         .each { |key| hash[key] = hash[key].to_sym if hash[key].respond_to? key }
 
       hash

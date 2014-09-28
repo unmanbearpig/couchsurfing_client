@@ -104,9 +104,9 @@ module CouchSurfingClient
   class Location
     attr_reader :cs
 
-    KEYS = %i(city_id state_id country_id region_id longitude latitude
+    KEYS = %w(city_id state_id country_id region_id longitude latitude
               population population_dimension has_couchrequest city state
-              country region type)
+              country region type).map(&:to_sym)
 
     KEYS.each do |sym|
       define_method sym do
